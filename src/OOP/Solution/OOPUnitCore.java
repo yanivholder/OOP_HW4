@@ -1,7 +1,7 @@
 package OOP.Solution;
 
 import OOP.Provided.OOPAssertionFailure;
-//import OOP.Solution.OOPTestSummary;
+import OOP.Solution.OOPTestSummary;
 
 public class OOPUnitCore {
 
@@ -15,13 +15,13 @@ public class OOPUnitCore {
         throw new OOPAssertionFailure();
     }
 
-//    public static OOPTestSummary runClass(Class<?> testClass) {
-//
-//    }
-//
-//    public static OOPTestSummary runClass(Class<?> testClass, String tag) {
-//
-//    }
+    public static OOPTestSummary runClass(Class<?> testClass) {
+        return runClass(testClass, null);
+    }
+
+    public static OOPTestSummary runClass(Class<?> testClass, String tag) {
+
+    }
 
 
 }

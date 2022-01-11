@@ -3,13 +3,7 @@ package OOP.Solution;
 import OOP.Provided.OOPResult;
 import java.util.*;
 
-
 public class OOPTestSummary {
-//    Map<OOPResult.OOPTestResult, Integer> map = new HashMap<OOPResult.OOPTestResult, Integer>();
-//    map.put(OOPResult.OOPTestResult.SUCCESS, 0);
-//    map.put(OOPResult.OOPTestResult.SUCCESS, 0);
-//    map.put(OOPResult.OOPTestResult.SUCCESS, 0);
-//    map.put(OOPResult.OOPTestResult.SUCCESS, 0);
 
     private int n_success = 0;
     private int n_fail = 0;
@@ -26,19 +20,19 @@ public class OOPTestSummary {
             }
         }
     }
-    int getNumSuccesses(){
+    public int getNumSuccesses(){
         return n_success;
     }
 
-    int getNumFailures(){
+    public int getNumFailures(){
         return n_fail;
     }
 
-    int getNumExceptionMismatches(){
+    public int getNumExceptionMismatches(){
         return n_mismatch;
     }
 
-    int getNumErrors(){
+    public int getNumErrors(){
         return n_error;
     }
 }
