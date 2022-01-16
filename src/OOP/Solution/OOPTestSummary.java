@@ -11,7 +11,7 @@ public class OOPTestSummary {
     private int n_mismatch = 0;
     private int n_error = 0;
 
-    OOPTestSummary (Map<String, OOPResult> testMap) {
+    public OOPTestSummary(Map<String, OOPResult> testMap) {
         for (OOPResult res : testMap.values()) {
             switch (res.getResultType()) {
                 case SUCCESS -> n_success++;

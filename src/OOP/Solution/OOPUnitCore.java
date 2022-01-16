@@ -8,6 +8,7 @@ import OOP.Solution.OOPTestClass;
 import OOP.Solution.OOPTestSummary;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -18,7 +19,9 @@ import java.util.stream.Collectors;
 public class OOPUnitCore {
 
     public static void assertEquals(Object expected, Object actual) throws OOPAssertionFailure {
-        if(!actual.equals(expected)) {
+        if((expected != null && actual == null)
+                || (expected == null && actual != null)
+                || (expected != null && actual != null && !actual.equals(expected))) {
             throw new OOPAssertionFailure();
         }
     }
@@ -28,12 +31,16 @@ public class OOPUnitCore {
     }
 
     public static OOPTestSummary runClass(Class<?> testClass) {
-        return runClass(testClass, null);
+        return innerRunClass(testClass, null);
     }
 
-    public static OOPTestSummary runClass(Class<?> testClass, String tag) throws IllegalArgumentException {
-        // TODO: check if the exception should be thrown when tag == null
-        if(testClass == null || testClass.isAnnotationPresent(OOPTestClass.class)) {
+    public static OOPTestSummary runClass(Class<?> testClass, String tag) {
+        if (tag == null) throw new IllegalArgumentException();
+        return innerRunClass(testClass, tag);
+    }
+
+    private static OOPTestSummary innerRunClass(Class<?> testClass, String tag) throws IllegalArgumentException {
+        if(testClass == null || !testClass.isAnnotationPresent(OOPTestClass.class)) {
             throw new IllegalArgumentException();
         }
 
@@ -316,6 +323,12 @@ public class OOPUnitCore {
                 value = ctor.newInstance(value);
             } catch (NoSuchMethodException e) {
                 // do nothing ( implicit value = field.get(obj) )
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
             }
         }
         return new Value(value);

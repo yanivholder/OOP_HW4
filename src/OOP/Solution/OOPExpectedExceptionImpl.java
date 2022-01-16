@@ -36,11 +36,18 @@ public class OOPExpectedExceptionImpl implements OOPExpectedException {
         if(this.expected_exception == null && e == null) {
             return true;
         }
-        if(this.expected_exception.isInstance(e)
-                && this.messages.stream().allMatch(m -> e.getMessage().contains(m))) {
-            return true;
+        if(this.expected_exception.isInstance(e)) {
+            if(this.messages.size() == 0 && e.getMessage() != null
+                    ||this.messages.size() > 0 && e.getMessage() == null) {
+                return false;
+            }
+            if(this.messages != null && e.getMessage() != null
+                    && (!this.messages.stream().allMatch(m -> e.getMessage().contains(m)))) {
+                return false;
+            }
         }
-        return false;
+        else return false;
+        return true;
     }
 
     public static OOPExpectedException none() {
