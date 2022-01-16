@@ -74,7 +74,7 @@ public class OOPUnitCore {
                 .forEach(m -> {
                     m.setAccessible(true);
                     try {
-                        m.invoke(true);
+                        m.invoke(newTestClass);
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     } catch (InvocationTargetException e) {
